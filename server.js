@@ -4,6 +4,8 @@ const fs = require('fs');
 
 const app = express();
 
+const port = process.env.PORT || 3000;
+
 hbs.registerPartials(`${__dirname}/views/partials`);
 app.set('view engine', 'hbs');
 app.use((req, res, next) => {
@@ -32,14 +34,6 @@ hbs.registerHelper('screamIt', (text) => {
 });
 
 app.get('/', (req, res) => {
-    // res.send('<h1>Hello Express!</h1>');
-    // res.send({
-    //    name: 'Sunil',
-    //    like: [
-    //        'Sucking dicks',
-    //        'Getting fucked in the ass'
-    //    ]
-    // });
     res.render('home.hbs', {
         pageTitle: 'Home page',
         welcomeMessage: 'Welcome to the home to Sunil Chaturvedi.'
@@ -58,6 +52,6 @@ app.get('/bad', (req, res) => {
     });
 });
 
-app.listen(3000, () => {
-    console.log('Server is up and listening on port 3000');
+app.listen(port, () => {
+    console.log(`Server is up and listening on port ${port}`);
 });
